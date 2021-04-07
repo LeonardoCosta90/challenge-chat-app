@@ -8,3 +8,5 @@ const App = () => (
     <Route path="/chat" exact component={join} />
   </Router>
 );
+
+export default App;
