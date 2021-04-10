@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import queryString from 'query-string';
 import io from 'socket.io-client';
 
-const ENDPOINT = 'localhost:5000';
+const ENDPOINT = 'http://localhost:5000';
 
 let socket;
 
@@ -19,17 +19,21 @@ const Chat = ({ location }) => {
       transports: ['websocket'],
     };
 
-    socket = io.connect('http://localhost:5000', connectionOptions);
-    //socket = io(ENDPOINT);
+    socket = io.connect(ENDPOINT, connectionOptions);
 
-    //setRoom(room);
-    //setName(name);
+    setRoom(room);
+    setName(name);
+    console.log(socket);
 
     socket.emit('join', { name, room }, (error) => {
       if (error) {
         alert(error);
       }
     });
+    return () => {
+      socket.emit('disconnect');
+      socket.off();
+    };
   }, [ENDPOINT, location.search]);
 
   return <h1>Chat</h1>;
