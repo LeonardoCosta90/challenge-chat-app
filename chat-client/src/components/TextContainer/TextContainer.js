@@ -14,6 +14,7 @@ const TextContainer = ({ users }) => (
         </span>
       </h1>
     </div>
+
     {users ? (
       <div>
         <h1>People currently chatting:</h1>

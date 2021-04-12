@@ -50,7 +50,7 @@ const Chat = ({ location }) => {
       setMessages((messages) => [...messages, message]);
     });
 
-    socket.on('roomData', ({ users }) => {
+    socket.on('roomData', ({ users, rooms }) => {
       setUsers(users);
     });
   }, []);
